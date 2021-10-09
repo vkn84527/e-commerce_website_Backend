@@ -50,7 +50,7 @@ module.exports.register = async function (req, res) {
             if (results) {
                 console.log("admin registered sucessfully.........")
                 console.log("Email send on your Registered_Mail :)")
-                //sendmail.ab()
+                sendmail.ab()
                 const user = { admin_email: req.body.admin_email, admin_id: results.insertId }
                 token = jwt.sign(user, secret_key1)
 

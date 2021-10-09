@@ -24,7 +24,7 @@ module.exports.register = async function (req, res) {
       if (results) {
         console.log("customer registered sucessfully.........")
         console.log("Email send on your Mail :)")
-        //sendmail.ab2() 
+        sendmail.ab2() 
 
         const user = { customer_email: req.body.customer_email, customer_id: results.insertId }
 
