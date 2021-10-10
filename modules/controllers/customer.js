@@ -3,6 +3,7 @@ const status_code = require('../constants/constants')
 const execute_query = require('./db_query').execute_query
 const hash_service = require('../common_functions/hashing');
 const jwt = require('jsonwebtoken')
+const sendmail = require('../service/customer_mail')
 var secret_key = process.env.secret_key
 
 
@@ -24,7 +25,7 @@ module.exports.register = async function (req, res) {
       if (results) {
         console.log("customer registered sucessfully.........")
         console.log("Email send on your Mail :)")
-        sendmail.ab2() 
+        //sendmail.ab2() 
 
         const user = { customer_email: req.body.customer_email, customer_id: results.insertId }
 
@@ -37,7 +38,8 @@ module.exports.register = async function (req, res) {
       }
     }
   }
-  catch {
+  catch(err) {
+    console.log(err)
     return responce.sendResponse(res, 'There are some error with query', status_code.STATUS_CODES.UNAUTHORIZED)
   }
 }
